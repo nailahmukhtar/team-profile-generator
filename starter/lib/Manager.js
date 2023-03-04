@@ -15,12 +15,12 @@ class Manager extends Employee {
         return "Manager";
     }
 
-    // setofficeNumber(value) {
-    //     this.officeNumber = value;
-    // }
+    getOfficeNumber(value) {
+        this.officeNumber = value;
+    }
 }
 
-module.exports = Manager
+module.exports = Manager;  
 
 // const manager = new Manager("James", 3, "test@test.com", 145);
 // console.log(manager.getRole());
