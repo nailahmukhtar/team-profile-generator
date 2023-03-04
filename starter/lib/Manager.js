@@ -20,6 +20,8 @@ class Manager extends Employee {
     // }
 }
 
+module.exports = Manager
+
 // const manager = new Manager("James", 3, "test@test.com", 145);
 // console.log(manager.getRole());
 
