@@ -51,44 +51,54 @@ const createManager = () => {
         );
         //pass that new object to the team array
         team.push(manager);
+        createAnotherTeamMember();
       
     });
-
+}
+//Once Manager created, check if other team members need to be added through user prompt
+const createAnotherTeamMember = () => {
+    return inquirer.prompt([
+        {
+            type: 'list',
+            name: 'teamMember',
+            message: 'Would you like to add another team member?',
+            choices: ['Engineer', 'Intern', 'No more team members to add']
+        },
+    ]).then(response => {
+        switch (response.teamMember) {
+            case "Engineer":
+                createEngineer();
+                break;
+            case "Intern":
+                createIntern();
+            default:
+                init(); // need to break this function up as it loops from beginning.
+                break;
+        }
+    });
 }
 
+
 // {
-//     type: 'list',
-//     name: 'teamMember',
-//     message: 'Would you like to add another team member?',
-//     choices: ['Engineer', 'Intern', 'No more team members to add']
+//     type: 'input',
+//     name: 'engineer.name',
+//     message: 'Engineer Name?'
 // },
-
-// if (response.teamMember === 'Engineer') {
-//     return inquirer.prompt([
-//         {
-//             type: 'input',
-//             name: 'engineer.name',
-//             message: 'Engineer Name?'
-//         },
-//         {
-//             type: 'input',
-//             name: 'engineer.id',
-//             message: 'Engineer Id?',
-//         },
-//         {
-//             type: 'input',
-//             name: 'engineer.email',
-//             message: 'Engineer email?',
-//         },
-//         {
-//             type: 'input',
-//             name: 'engineer.github',
-//             message: 'Engineer github?',
-//         },
-        
-//     ])
-
-// }
+// {
+//     type: 'input',
+//     name: 'engineer.id',
+//     message: 'Engineer Id?',
+// },
+// {
+//     type: 'input',
+//     name: 'engineer.email',
+//     message: 'Engineer email?',
+// },
+// {
+//     type: 'input',
+//     name: 'engineer.github',
+//     message: 'Engineer github?',
+// },
 
 
   
