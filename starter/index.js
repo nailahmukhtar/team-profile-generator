@@ -11,8 +11,6 @@ const outputPath = path.join(OUTPUT_DIR, "team.html");
 
 const render = require("./src/page-template.js");
 
-const writeFileAsync = util.promisify(fs.writeFile);
-
 // TODO: Write Code to gather information about the development team members, and render the HTML file.
 //Create a team array to hold the values created by user input
 const team = [];
@@ -72,7 +70,7 @@ const createAnotherTeamMember = () => {
             case "Intern":
                 createIntern();
             default:
-                init(); // need to break this function up as it loops from beginning.
+                renderTeam();
                 break;
         }
     });
@@ -103,19 +101,14 @@ const createAnotherTeamMember = () => {
 
   
   // function to initialize program
-  const init = async () => {
-      try {
-        const answers = await createManager();
-
-        console.log(answers);
-        const renderedAnswers = render(team);
-        await writeFileAsync(outputPath, renderedAnswers);
-    
-        console.log('Successfully wrote to a team.html file');
-      } catch (err) {
-        console.log(err);
-      }
+  const init = () => {
+        createManager();
     };
+
+    const renderTeam = () => {
+        fs.writeFileSync(outputPath, render(team), 'utf-8')
+        console.log("You have successfully created a team.html file!");
+    }
   
   // function call to initialize program
   init();
