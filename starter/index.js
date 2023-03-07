@@ -53,6 +53,7 @@ const createManager = () => {
       
     });
 }
+
 //Once Manager created, check if other team members need to be added through user prompt
 const createAnotherTeamMember = () => {
     return inquirer.prompt([
@@ -69,6 +70,7 @@ const createAnotherTeamMember = () => {
                 break;
             case "Intern":
                 createIntern();
+                break;
             default:
                 renderTeam();
                 break;
@@ -76,39 +78,93 @@ const createAnotherTeamMember = () => {
     });
 }
 
+// function to prompt user for engineer details
+const createEngineer = () => {
+    return inquirer.prompt([
+        {
+            type: 'input',
+            name: 'name',
+            message: 'Engineer Name?'
+        },
+        {
+            type: 'input',
+            name: 'id',
+            message: 'Engineer Id?',
+        },
+        {
+            type: 'input',
+            name: 'email',
+            message: 'Engineer email?',
+        },
+        {
+            type: 'input',
+            name: 'github',
+            message: 'Engineer github?',
+        },
+    //pass engineer values to a new engineer object
+    ]).then(response => {
+        const engineer = new Engineer(
+            response.name,
+            response.id,
+            response.github,
+            response.email
+        );
+        //pass that new object to the team array
+        team.push(engineer);
+        createAnotherTeamMember();
+      
+    });
+}
 
-// {
-//     type: 'input',
-//     name: 'engineer.name',
-//     message: 'Engineer Name?'
-// },
-// {
-//     type: 'input',
-//     name: 'engineer.id',
-//     message: 'Engineer Id?',
-// },
-// {
-//     type: 'input',
-//     name: 'engineer.email',
-//     message: 'Engineer email?',
-// },
-// {
-//     type: 'input',
-//     name: 'engineer.github',
-//     message: 'Engineer github?',
-// },
+// function to prompt user for interns details
+const createIntern = () => {
+    return inquirer.prompt([
+        {
+            type: 'input',
+            name: 'name',
+            message: 'Intern Name?'
+        },
+        {
+            type: 'input',
+            name: 'id',
+            message: 'Intern Id?',
+        },
+        {
+            type: 'input',
+            name: 'email',
+            message: 'Intern email?',
+        },
+        {
+            type: 'input',
+            name: 'school',
+            message: 'Intern School?',
+        },
+    //pass intern values to a new intern object
+    ]).then(response => {
+        const intern = new Intern(
+            response.name,
+            response.id,
+            response.school,
+            response.email
+        );
+        //pass that new object to the team array
+        team.push(intern);
+        createAnotherTeamMember();
+      
+    });
+}
 
 
-  
   // function to initialize program
-  const init = () => {
-        createManager();
-    };
+const init = () => {
+    createManager();
+};
 
-    const renderTeam = () => {
-        fs.writeFileSync(outputPath, render(team), 'utf-8')
-        console.log("You have successfully created a team.html file!");
-    }
+//function to render team when no more members need to be added
+const renderTeam = () => {
+    fs.writeFileSync(outputPath, render(team), 'utf-8')
+    console.log("You have successfully created a team.html file!");
+}
   
   // function call to initialize program
   init();
