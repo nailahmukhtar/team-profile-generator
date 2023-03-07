@@ -164,7 +164,7 @@ const renderTeam = () => {
     fs.writeFileSync(outputPath, render(team), 'utf-8')
     console.log("You have successfully created a team.html file!");
     } catch(err) {
-        console.log("Something went wrong :(");
+        console.log("Something went wrong :( you might need to create an folder called 'Output' and run again");
     }
 }
   
