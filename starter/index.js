@@ -41,8 +41,9 @@ const createManager = () => {
         const manager = new Manager(
             response.name,
             response.id,
-            response.officeNumber,
-            response.email
+            response.email,
+            response.officeNumber
+
         );
         //pass that new object to the team array
         team.push(manager);
@@ -103,8 +104,9 @@ const createEngineer = () => {
         const engineer = new Engineer(
             response.name,
             response.id,
-            response.github,
-            response.email
+            response.email,
+            response.github
+
         );
         //pass that new object to the team array
         team.push(engineer);
@@ -141,8 +143,9 @@ const createIntern = () => {
         const intern = new Intern(
             response.name,
             response.id,
-            response.school,
-            response.email
+            response.email,
+            response.school
+
         );
         //pass that new object to the team array
         team.push(intern);
