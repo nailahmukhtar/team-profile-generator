@@ -160,8 +160,12 @@ const init = () => {
 
 //function to render team when no more members need to be added
 const renderTeam = () => {
+    try {
     fs.writeFileSync(outputPath, render(team), 'utf-8')
     console.log("You have successfully created a team.html file!");
+    } catch(err) {
+        console.log("Something went wrong :(");
+    }
 }
   
 // call function call to initialize program
